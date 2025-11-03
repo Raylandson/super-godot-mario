@@ -9,6 +9,8 @@ var accel = 50.0
 var opposite_accel = 100.0
 var friction = 100.0
 var gravity = 10.0
+var jump_height = 5 * TILE_SIZE
+var jump_velocity = sqrt(2*gravity*jump_height)
 
 func _physics_process(delta: float) -> void:
 	match actual_state:
@@ -16,9 +18,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x = max(abs(velocity.x) - friction, 0) * sign(velocity.x)
 			if get_direction() != 0.0:
 				actual_state = states.walk
-			check_jump()
+			check_jump(delta)
 		states.walk:
-			check_jump()
+			check_jump(delta)
 			var direction = get_direction()
 			var opposite_direction = direction != sign(velocity.x)
 			if opposite_direction:
@@ -33,9 +35,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func check_jump():
+func check_jump(delta):
 	if is_on_floor() and Input.is_action_pressed("jump"):
-		velocity.y -= 500
+		velocity.y -= jump_velocity * sqrt(1/delta)
 	pass
 
 
