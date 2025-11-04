@@ -18,3 +18,10 @@ texture = ExtResource("2_gmlin")
 shape = SubResource("CircleShape2D_2avkh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -63)
+limit_left = 0
+limit_top = -50
+limit_bottom = 250
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_bottom_margin = 0.0
