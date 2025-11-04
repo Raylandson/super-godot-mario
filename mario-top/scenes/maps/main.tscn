@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://bsgyc2wcn66cp"]
+[gd_scene load_steps=7 format=4 uid="uid://bsgyc2wcn66cp"]
 
 [ext_resource type="Texture2D" uid="uid://cimwq7n67qumy" path="res://assets/maptileset.PNG" id="1_8wxmh"]
 [ext_resource type="PackedScene" uid="uid://d1w5ccem33kle" path="res://scenes/player/player.tscn" id="2_pwihf"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_6hyye"]
-[ext_resource type="Script" uid="uid://kixbm1ob1e7s" path="res://scenes/enemy/enemy.gd" id="3_gx8es"]
+[ext_resource type="PackedScene" uid="uid://drhkcd78218ty" path="res://scenes/enemy/enemy.tscn" id="3_dlv6v"]
+[ext_resource type="PackedScene" uid="uid://ceba8jg20r5fo" path="res://scenes/general/death_area.tscn" id="5_2avkh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwihf"]
 texture = ExtResource("1_8wxmh")
@@ -508,9 +508,6 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_pwihf")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6hyye"]
-radius = 7.0
-
 [node name="Main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -521,46 +518,7 @@ tile_set = SubResource("TileSet_6hyye")
 [node name="Player" parent="." instance=ExtResource("2_pwihf")]
 position = Vector2(52, 150)
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
+[node name="Enemy" parent="." instance=ExtResource("3_dlv6v")]
 position = Vector2(916, 152)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("3_gx8es")
 
-[node name="Icon" type="Sprite2D" parent="Enemy"]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_6hyye")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("CircleShape2D_6hyye")
-
-[node name="left" type="RayCast2D" parent="Enemy"]
-position = Vector2(-8, 1)
-collision_mask = 2
-
-[node name="right" type="RayCast2D" parent="Enemy"]
-position = Vector2(8, 1)
-collision_mask = 2
-
-[node name="Enemy2" type="CharacterBody2D" parent="."]
-position = Vector2(623, 160)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("3_gx8es")
-
-[node name="Icon" type="Sprite2D" parent="Enemy2"]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_6hyye")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
-shape = SubResource("CircleShape2D_6hyye")
-
-[node name="left" type="RayCast2D" parent="Enemy2"]
-position = Vector2(-8, 1)
-collision_mask = 2
-
-[node name="right" type="RayCast2D" parent="Enemy2"]
-position = Vector2(8, 1)
-collision_mask = 2
+[node name="DeathArea" parent="." instance=ExtResource("5_2avkh")]

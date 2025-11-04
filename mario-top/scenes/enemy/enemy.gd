@@ -4,9 +4,14 @@ var speed = 100
 var direction = 1.0
 var time_turn = 0.5
 
+func _ready() -> void:
+	$AnimatedSprite2D.play("walk")
+
+
 func _physics_process(delta: float) -> void:
 	velocity.x = direction * speed
 	get_direction()
+	$AnimatedSprite2D.flip_h = direction > 0
 	velocity.y += 10
 	time_turn += delta
 	move_and_slide()

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 enum states {idle, walk}
 
 const TILE_SIZE = 16
