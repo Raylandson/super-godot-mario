@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 
 
 func check_jump(delta):
-	if is_on_floor() and Input.is_action_pressed("jump"):
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y -= jump_velocity * sqrt(1/delta)
 	pass
 

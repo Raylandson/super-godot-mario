@@ -45,8 +45,10 @@ jump={
 [layer_names]
 
 2d_physics/layer_2="map"
+2d_physics/layer_3="enemy"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.4090627, 0.5934001, 0.9926637, 1)
